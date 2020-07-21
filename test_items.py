@@ -1,9 +1,9 @@
-link = "http://selenium1py.pythonanywhere.com/"
+import time
 
-def test_guest_should_see_login_link_pass(browser, language):
-    browser.get(link)
-    browser.find_element_by_css_selector("#login_link")
 
-def test_guest_should_see_login_link_fail(browser, language):
-    browser.get(link)
-    browser.find_element_by_css_selector("#magic_link")
+# link = 'http://selenium1py.pythonanywhere.com/catalogue/coders-at-work_207/'
+
+def test_basket_button(browser, language):
+    browser.get(f'http://selenium1py.pythonanywhere.com/{language}/catalogue/coders-at-work_207/')
+    time.sleep(3)
+    assert browser.find_element_by_css_selector(".btn.btn-lg.btn-primary.btn-add-to-basket")

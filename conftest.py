@@ -3,10 +3,10 @@ from selenium import webdriver
 
 
 def pytest_addoption(parser):
-    parser.addoption('--browser_name', action='store', default='opera',
+    parser.addoption('--browser_name', action='store', default='chrome',
                      help="Choose browser: chrome or opera")
     parser.addoption('--language', action='store', default='ru',
-                     help="Choose language")
+                     help="Choose language, default ru")
 
 
 @pytest.fixture(scope="function")
@@ -24,3 +24,10 @@ def browser(request):
     yield browser
     print("\nquit browser..")
     browser.quit()
+
+
+@pytest.fixture(scope="function")
+def language(request):
+    language = request.config.getoption("language")
+    # link = f'http://selenium1py.pythonanywhere.com/{language}/catalogue/coders-at-work_207/'
+    yield language
